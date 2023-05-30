@@ -2,17 +2,22 @@
   "name": "novo_site",
   "version": "0.1.0",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js, jsx}": [
+      "npm run lint --fix"
+    ]
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install"
-  },
-  "lint-staged": {
-    "src/**/*": [
-      "npm run lint --fix"
-    ]
   },
   "dependencies": {
     "autoprefixer": "10.4.14",
