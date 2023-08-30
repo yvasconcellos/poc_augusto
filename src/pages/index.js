@@ -5,7 +5,7 @@ import ModalForms from '@/components/Modal'
 
 export default function name() {
   return (
-    <div className="flex justify-center bg-gray-100 h-screen">
+    <div className="flex justify-center bg-gradient-to-b from-white to-pink-300 h-screen">
       <div className="container flex flex-col gap-32">
         <div className="flex justify-between p-4 w-full">
           <div>
@@ -19,7 +19,7 @@ export default function name() {
           </div>
           <div className="flex items-center gap-2">
             <div className="flex flex-col">
-              <p>Bem vindo, Augusto</p>
+              <p className="font-semibold ">Bem vindo, Augusto</p>
               <p>Fazer Logout</p>
             </div>
             <Image

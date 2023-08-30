@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Modal,
   Button,
@@ -8,20 +9,66 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  Text
+  Text,
+  FormControl,
+  FormLabel,
+  Input,
+  Select
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
+import PhoneMaskInput from '../components/PhoneMaskInput'
+import CnpjMaskInput from '../components/CnpjMaskInput'
+import CpfMaskInput from './CpfMaskInput'
 
 export default function ModalForms() {
+  const [nome, setNome] = useState('')
+
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [cnpj, setCnpj] = useState('')
+  const [cpf, setCpf] = useState('')
+  const [email, setEmail] = useState('')
+  const [tipo, setTipo] = useState('')
+
+  const handleNameChange = (e) => {
+    setNome(e.target.value)
+  }
+
+  const handlePhoneNumberChange = (e) => {
+    setPhoneNumber(e.target.value)
+  }
+
+  const handleCnpjChange = (e) => {
+    setCnpj(e.target.value)
+  }
+
+  const handleCpfChange = (e) => {
+    setCpf(e.target.value)
+  }
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value)
+  }
+
+  const handleTipoChange = (e) => {
+    setTipo(e.target.value)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const user = {
+      nome,
+      email,
+      tipo,
+      phoneNumber,
+      [tipo === 'Empresa' ? 'cnpj' : 'cpf']: tipo === 'Empresa' ? cnpj : cpf
+    }
+    console.log('submit', user)
+  }
+
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
-      {/* <div className="p-4 bg-blue-500 rounded-lg">
-        <button className="text-white" onClick={onOpen}>
-          NOVO CLIENTE
-        </button>
-      </div> */}
       <Button colorScheme="messenger" onClick={onOpen}>
         NOVO CLIENTE
       </Button>
@@ -34,10 +81,46 @@ export default function ModalForms() {
             <Text fontWeight="bold" mb="1rem">
               ADICIONE NOVOS CLIENTES AO SISTEMA
             </Text>
+            <FormControl isRequired className="flex flex-col gap-2">
+              <div>
+                <FormLabel>Nome</FormLabel>
+                <Input value={nome} onChange={handleNameChange} />
+              </div>
+              <div>
+                <FormLabel>Email</FormLabel>
+                <Input value={email} onChange={handleEmailChange} />
+              </div>
+              <div>
+                <FormLabel>Tipo</FormLabel>
+                <Select
+                  placeholder="Selecione uma opção"
+                  value={tipo}
+                  onChange={handleTipoChange}
+                >
+                  <option value="Pessoa">Pessoa</option>
+                  <option value="Empresa">Empresa</option>
+                </Select>
+              </div>
+              <div>
+                <FormLabel>Telefone</FormLabel>
+                <PhoneMaskInput
+                  value={phoneNumber}
+                  onChange={handlePhoneNumberChange}
+                />
+              </div>
+              <div>
+                <FormLabel>Documento</FormLabel>
+                {tipo === 'Empresa' ? (
+                  <CnpjMaskInput value={cnpj} onChange={handleCnpjChange} />
+                ) : (
+                  <CpfMaskInput value={cpf} onChange={handleCpfChange} />
+                )}
+              </div>
+            </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
+            <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
               Salvar
             </Button>
             <Button onClick={onClose}>Fechar</Button>
