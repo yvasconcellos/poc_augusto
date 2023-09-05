@@ -16,11 +16,11 @@ import {
   Select
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import PhoneMaskInput from '../components/PhoneMaskInput'
-import CnpjMaskInput from '../components/CnpjMaskInput'
+import PhoneMaskInput from './PhoneMaskInput'
+import CnpjMaskInput from './CnpjMaskInput'
 import CpfMaskInput from './CpfMaskInput'
 
-export default function ModalForms() {
+export default function ModalCliente() {
   const [nome, setNome] = useState('')
 
   const [phoneNumber, setPhoneNumber] = useState('')

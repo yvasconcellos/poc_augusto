@@ -9,17 +9,17 @@ import {
   Tr
 } from '@chakra-ui/react'
 
-export default function TableData({ users }) {
+export default function TableCliente({ headers, users }) {
   return (
     <TableContainer>
       <Table variant="simple">
         <Thead>
           <Tr>
-            <Th textAlign={'center'}>Nome</Th>
-            <Th textAlign={'center'}>Documento</Th>
-            <Th textAlign={'center'}>Tipo</Th>
-            <Th textAlign={'center'}>Contato</Th>
-            <Th textAlign={'center'}>Ações</Th>
+            {headers.map((header, index) => (
+              <Th textAlign={'center'} key={index}>
+                {header}
+              </Th>
+            ))}
           </Tr>
         </Thead>
         <Tbody>

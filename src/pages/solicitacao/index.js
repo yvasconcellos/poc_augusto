@@ -1,7 +1,7 @@
-import TableCliente from '@/components/TableCliente'
-import { headerUsers, users } from '../../utils/utils'
-import ModalCliente from '@/components/ModaCliente'
+import { headerSolicitacoes, solicitacoes } from '../../../utils/utils'
 import Header from '@/components/Header'
+import ModalSolicitacao from '@/components/ModalSolicitacao'
+import TableSolicitacao from '@/components/TableSolicitacao'
 
 export default function name() {
   return (
@@ -10,9 +10,12 @@ export default function name() {
         <Header />
         <div className="bg-white flex flex-col px-8 py-16 gap-8 rounded-lg">
           <div className="flex justify-end p-4">
-            <ModalCliente />
+            <ModalSolicitacao />
           </div>
-          <TableCliente users={users} headers={headerUsers} />
+          <TableSolicitacao
+            solicitacoes={solicitacoes}
+            headers={headerSolicitacoes}
+          />
         </div>
       </div>
     </div>
