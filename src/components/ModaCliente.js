@@ -19,6 +19,7 @@ import React, { useState } from 'react'
 import PhoneMaskInput from './PhoneMaskInput'
 import CnpjMaskInput from './CnpjMaskInput'
 import CpfMaskInput from './CpfMaskInput'
+// import usePost from '../../utils/usePost'
 
 export default function ModalCliente() {
   const [nome, setNome] = useState('')
@@ -28,6 +29,9 @@ export default function ModalCliente() {
   const [cpf, setCpf] = useState('')
   const [email, setEmail] = useState('')
   const [tipo, setTipo] = useState('')
+  // const [postData, setPostData] = useState({});
+  // const { loading, error } = usePost('134.209.116.118/usuario/CLIENTE', postData);
+
 
   const handleNameChange = (e) => {
     setNome(e.target.value)
@@ -55,17 +59,29 @@ export default function ModalCliente() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const user = {
-      nome,
-      email,
-      tipo,
-      phoneNumber,
-      [tipo === 'Empresa' ? 'cnpj' : 'cpf']: tipo === 'Empresa' ? cnpj : cpf
-    }
-    console.log('submit', user)
+    // const user = { pessoa: {
+    //   nome,
+    //   tipo,    
+    //   contato: {
+    //     telefone: phoneNumber,
+    //     email
+    //   },
+    //   [tipo === 'Empresa' ? 'cnpj' : 'cpf']: tipo === 'Empresa' ? cnpj : cpf
+    // }
+    // }
+    // // setPostData(user)
+    // getClients()
   }
 
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  // if (error) {
+  //   return <div>Error: {error.message}</div>;
+  // }
 
   return (
     <>
